@@ -16,20 +16,20 @@ fun MediaPlayer2.events(): Observable<MediaPlayer2Event> {
 }
 
 sealed class MediaPlayer2Event {
-  class MediaTimeDiscontinuity(
+  data class MediaTimeDiscontinuity(
     val mp: MediaPlayer2,
     val dsd: DataSourceDesc2,
     val timestamp: MediaTimestamp2
   ) : MediaPlayer2Event()
 
-  class Info(
+  data class Info(
     val mp: MediaPlayer2,
     val dsd: DataSourceDesc2,
     val what: Int,
     val extra: Int
   ) : MediaPlayer2Event()
 
-  class Error(
+  data class Error(
     val mp: MediaPlayer2,
     val dsd: DataSourceDesc2,
     val what: Int,
