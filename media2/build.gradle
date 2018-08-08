@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdkVersion Vers.compile_sdk
+
+  defaultConfig {
+    minSdkVersion Vers.min_sdk
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  libraryVariants.all {
+    it.generateBuildConfig.enabled = false
+  }
+}
+
+dependencies {
+  api Libs.media2
+  api Libs.rxjava
+  api Libs.rxandroid
+
+  implementation Libs.kotlin
+
+  testImplementation 'junit:junit:4.12'
+
+  androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+}

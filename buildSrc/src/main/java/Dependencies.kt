@@ -1,6 +1,6 @@
 object Vers {
   val compile_sdk = 28
-  val min_sdk = 21
+  val min_sdk = 27
   val target_sdk = 28
   val agp = "3.2.0-beta05"
 
@@ -25,9 +25,8 @@ object Libs {
   val paging = "androidx.paging:paging-runtime:2.0.0-rc01"
   val media2 = "androidx.media2:media2:1.0.0-alpha02"
 
-  val viewmodel = "android.arch.lifecycle:viewmodel:1.1.1"
-  val livedata = "android.arch.lifecycle:livedata:1.1.1"
-  val gms = "com.google.android.gms:play-services-location:15.0.0"
+  val rxjava = "io.reactivex.rxjava2:rxjava:2.2.0"
+  val rxandroid = "io.reactivex.rxjava2:rxandroid:2.0.2"
 
   val junit = "junit:junit:4.12"
   val support_test = "com.android.support.test:runner:1.0.1"
