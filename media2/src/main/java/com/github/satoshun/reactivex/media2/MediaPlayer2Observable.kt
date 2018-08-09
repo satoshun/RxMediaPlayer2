@@ -8,14 +8,14 @@ import androidx.media2.TimedMetaData2
 import io.reactivex.Observable
 import io.reactivex.Observer
 import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 
 internal class MediaPlayer2Observable(
-  private val player: MediaPlayer2
+  private val player: MediaPlayer2,
+  private val executor: Executor
 ) : Observable<MediaPlayer2Event>() {
   override fun subscribeActual(observer: Observer<in MediaPlayer2Event>) {
-    val listener = MediaPlayer2Listener(player, observer)
+    val listener = MediaPlayer2Listener(player, observer, executor)
     observer.onSubscribe(listener)
     listener.subscribe()
   }
@@ -24,14 +24,14 @@ internal class MediaPlayer2Observable(
 private class MediaPlayer2Listener(
   private val player: MediaPlayer2,
   private val observer: Observer<in MediaPlayer2Event>,
-  private val exector: Executor = Executors.newCachedThreadPool() // todo
+  private val executor: Executor
 ) : MediaPlayer2.EventCallback(),
   MainDisposable {
 
   override val unsubscribed = AtomicBoolean()
 
   fun subscribe() {
-    player.setEventCallback(exector, this)
+    player.setEventCallback(executor, this)
   }
 
   override fun onDispose() {
