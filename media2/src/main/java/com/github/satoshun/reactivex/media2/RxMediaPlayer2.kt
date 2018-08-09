@@ -17,6 +17,16 @@ fun MediaPlayer2.events(
 }
 
 /**
+ * event stream of [MediaPlayer2.DrmEventCallback]
+ */
+@CheckResult
+fun MediaPlayer2.drmEvents(
+  executor: Executor = Executors.newSingleThreadExecutor()
+): Observable<MediaPlayer2DrmEvent> {
+  return MediaPlayer2DrmEventObservable(this, executor)
+}
+
+/**
  * event stream of [MediaPlayer2.OnDrmConfigHelper]
  */
 @CheckResult

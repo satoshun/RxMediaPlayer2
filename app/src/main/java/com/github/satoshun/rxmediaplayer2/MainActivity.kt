@@ -9,6 +9,7 @@ import androidx.media2.MediaPlayer2
 import androidx.media2.UriDataSourceDesc2
 import com.github.satoshun.reactivex.media2.MediaPlayer2Event
 import com.github.satoshun.reactivex.media2.drmConfig
+import com.github.satoshun.reactivex.media2.drmEvents
 import com.github.satoshun.reactivex.media2.events
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -45,6 +46,14 @@ class MainActivity : AppCompatActivity() {
               Log.d("drm config", it.toString())
             }
     )
+
+    disposables.add(
+        player.drmEvents()
+            .subscribe {
+              Log.d("drm events", it.toString())
+            }
+    )
+
     player.setDataSource(
         UriDataSourceDesc2
             .Builder(this, Uri.parse(SAMPLE))
