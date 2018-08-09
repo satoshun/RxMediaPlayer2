@@ -1,8 +1,8 @@
 object Vers {
   val compile_sdk = 28
-  val min_sdk = 27
+  val min_sdk = 27 // todo minsdk is Build.VERSION_CODES.KITKAT on new MediaPlayer2
   val target_sdk = 28
-  val agp = "3.2.0-beta05"
+  val agp = "3.1.4"
 
   val kotlin = "1.2.60"
   val couroutine = "0.24.0"

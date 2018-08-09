@@ -23,7 +23,7 @@ fun MediaPlayer2.events(
 fun MediaPlayer2.drmEvents(
   executor: Executor = Executors.newSingleThreadExecutor()
 ): Observable<MediaPlayer2DrmEvent> {
-  return MediaPlayer2DrmEventObservable(this, executor)
+  return DrmEventObservable(this, executor)
 }
 
 /**

@@ -7,7 +7,7 @@ import io.reactivex.Observer
 import java.util.concurrent.Executor
 import java.util.concurrent.atomic.AtomicBoolean
 
-internal class MediaPlayer2DrmEventObservable(
+internal class DrmEventObservable(
   private val player: MediaPlayer2,
   private val executor: Executor
 ) : Observable<MediaPlayer2DrmEvent>() {
@@ -24,12 +24,12 @@ internal class MediaPlayer2DrmEventObservable(
     MainDisposable {
     override val unsubscribed: AtomicBoolean = AtomicBoolean()
 
-    override fun onDrmInfo(mp: MediaPlayer2, dsd: DataSourceDesc2, drmInfo: MediaPlayer2.DrmInfo) {
+    override fun onDrmInfo(mp: MediaPlayer2, dsd: DataSourceDesc2?, drmInfo: MediaPlayer2.DrmInfo?) {
       if (isDisposed) return
       observer.onNext(MediaPlayer2DrmEvent.DrmInfo(mp, dsd, drmInfo))
     }
 
-    override fun onDrmPrepared(mp: MediaPlayer2, dsd: DataSourceDesc2, status: Int) {
+    override fun onDrmPrepared(mp: MediaPlayer2, dsd: DataSourceDesc2?, status: Int) {
       if (isDisposed) return
       observer.onNext(MediaPlayer2DrmEvent.DrmPrepared(mp, dsd, status))
     }

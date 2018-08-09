@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.media2.MediaPlayer2
 import androidx.media2.UriDataSourceDesc2
 import com.github.satoshun.reactivex.media2.MediaPlayer2Event
-import com.github.satoshun.reactivex.media2.drmConfig
 import com.github.satoshun.reactivex.media2.drmEvents
 import com.github.satoshun.reactivex.media2.events
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.UUID
 
 private const val SAMPLE = "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
-//private const val DRM = "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8"
+//private const val SAMPLE = "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8"
 
 class MainActivity : AppCompatActivity() {
   private val disposables = CompositeDisposable()
@@ -33,17 +33,11 @@ class MainActivity : AppCompatActivity() {
               Log.d("events", it.toString())
               when (it) {
                 is MediaPlayer2Event.Info -> {
-                  // todo
-                  if (it.what == 100) player.play()
+                  if (it.what == MediaPlayer2.MEDIA_INFO_PREPARED) {
+                    player.play()
+                  }
                 }
               }
-            }
-    )
-
-    disposables.add(
-        player.drmConfig()
-            .subscribe {
-              Log.d("drm config", it.toString())
             }
     )
 
@@ -53,6 +47,9 @@ class MainActivity : AppCompatActivity() {
               Log.d("drm events", it.toString())
             }
     )
+
+    // todo
+    player.prepareDrm(UUID.randomUUID())
 
     player.setDataSource(
         UriDataSourceDesc2
@@ -77,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
   override fun onDestroy() {
     disposables.clear()
+    player.releaseDrm()
     super.onDestroy()
   }
 }
