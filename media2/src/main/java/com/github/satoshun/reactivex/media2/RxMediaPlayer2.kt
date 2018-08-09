@@ -15,3 +15,11 @@ fun MediaPlayer2.events(
 ): Observable<MediaPlayer2Event> {
   return MediaPlayer2Observable(this, executor)
 }
+
+/**
+ * event stream of [MediaPlayer2.OnDrmConfigHelper]
+ */
+@CheckResult
+fun MediaPlayer2.drmConfig(): Observable<MediaPlayer2DrmConfig> {
+  return DrmConfigObservable(this)
+}

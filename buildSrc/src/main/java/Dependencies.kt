@@ -20,7 +20,7 @@ object Libs {
 
   val recyclerview = "androidx.recyclerview:recyclerview:1.0.0-rc01"
   val appcompat = "androidx.appcompat:appcompat:1.0.0-rc01"
-  val constraint_layout = "androidx.constraintlayout:constraintlayout:2.0.0-alpha1"
+  val constraint_layout = "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
   val material = "com.google.android.material:material:1.0.0-rc01"
   val paging = "androidx.paging:paging-runtime:2.0.0-rc01"
   val media2 = "androidx.media2:media2:1.0.0-alpha02"
