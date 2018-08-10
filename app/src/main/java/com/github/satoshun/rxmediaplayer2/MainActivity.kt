@@ -27,29 +27,47 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     player = MediaPlayer2.create(this)
-    disposables.add(
-        player.events()
-            .subscribe {
-              Log.d("events", it.toString())
-              when (it) {
-                is MediaPlayer2Event.Info -> {
-                  if (it.what == MediaPlayer2.MEDIA_INFO_PREPARED) {
-                    player.play()
+
+    fun eventtest() {
+      disposables.add(
+          player.events()
+              .subscribe {
+                Log.d("event", it.toString())
+                when (it) {
+                  is MediaPlayer2Event.Info -> {
+                    if (it.what == MediaPlayer2.MEDIA_INFO_PREPARED) {
+                      player.play()
+                    }
                   }
                 }
               }
-            }
-    )
+      )
+    }
 
-    disposables.add(
-        player.drmEvents()
-            .subscribe {
-              Log.d("drm events", it.toString())
-            }
-    )
+    fun connectortest() {
+      disposables.add(
+          player.mediaPlayerConnector.events()
+              .subscribe {
+                Log.d("connector event", it.toString())
+              }
+      )
+    }
 
-    // todo
-    player.prepareDrm(UUID.randomUUID())
+    fun drmtest() {
+      disposables.add(
+          player.drmEvents()
+              .subscribe {
+                Log.d("drm events", it.toString())
+              }
+      )
+
+      // todo
+      player.prepareDrm(UUID.randomUUID())
+    }
+
+    eventtest()
+    connectortest()
+    drmtest()
 
     player.setDataSource(
         UriDataSourceDesc2
