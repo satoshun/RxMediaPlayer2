@@ -1,9 +1,9 @@
 package com.github.satoshun.reactivex.media2
 
-import androidx.media2.FileDataSourceDesc2
 import androidx.media2.MediaPlayer2
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -17,11 +17,12 @@ class RxMediaPlayerTest {
 
   @Before
   fun setUp() {
-    player = MediaPlayer2.create(rule.activity)
+    player = rule.activity.prepareTestPlayer()
+  }
 
-    val fd = rule.activity.assets.openFd("big_buck_bunny.mp4")
-    val desc = FileDataSourceDesc2.Builder(fd.fileDescriptor).build()
-    player.setDataSource(desc)
+  @After
+  fun tearDown() {
+    player.reset()
   }
 
   @Test fun create_player() {
@@ -30,8 +31,7 @@ class RxMediaPlayerTest {
     player.prepare()
 
     test
-        .awaitCount(1)
-        .values()[0]
+        .firstWithAwait()
         .isInstanceOf<MediaPlayer2Event.CallCompleted>()
   }
 }

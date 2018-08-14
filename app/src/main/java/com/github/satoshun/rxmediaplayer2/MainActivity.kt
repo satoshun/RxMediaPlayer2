@@ -74,6 +74,16 @@ class MainActivity : AppCompatActivity() {
             .Builder(this, Uri.parse(SAMPLE))
             .build()
     )
+//    val fd = assets.openFd("big_buck_bunny.mp4")
+//    player.setDataSource(
+//        FileDataSourceDesc2
+//            .Builder(
+//                fd.fileDescriptor,
+//                fd.startOffset,
+//                fd.length
+//            )
+//            .build()
+//    )
     player.prepare()
 
     // todo
