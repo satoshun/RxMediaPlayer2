@@ -22,8 +22,14 @@ dependencies {
 
   implementation Libs.kotlin
 
-  testImplementation 'junit:junit:4.12'
+  testImplementation Libs.junit
+  testImplementation Libs.test_runner
+  testImplementation Libs.test_rules
+  testImplementation Libs.robolectric
+  testImplementation Libs.truth
 
-  androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+  androidTestImplementation Libs.junit
+  androidTestImplementation Libs.test_runner
+  androidTestImplementation Libs.test_rules
+  androidTestImplementation Libs.truth
 }
