@@ -4,7 +4,7 @@ object Vers {
   val target_sdk = 28
   val agp = "3.1.4"
 
-  val kotlin = "1.2.60"
+  val kotlin = "1.2.61"
 }
 
 object Libs {
@@ -29,6 +29,6 @@ object Libs {
   val espresso = "com.android.support.test.espresso:espresso-core:3.0.1"
 
   val robolectric = "org.robolectric:robolectric:4.0-alpha-3"
-  val truth = "com.google.truth:truth:0.40"
+  val truth = "com.google.truth:truth:0.42"
   val mockito_kotlin = "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
 }
