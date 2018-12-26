@@ -35,20 +35,7 @@ class MainActivity : AppCompatActivity() {
       )
     }
 
-    fun drmtest() {
-//      disposables.add(
-//          player.drmEvents()
-//              .subscribe {
-//                Log.d("drm events", it.toString())
-//              }
-//      )
-
-      // todo
-//      player.prepareDrm(UUID.randomUUID())
-    }
-
     eventsObserve()
-//    drmtest()
 
     player.setMediaItem(
       UriMediaItem
@@ -84,7 +71,6 @@ class MainActivity : AppCompatActivity() {
 
   override fun onDestroy() {
     disposables.clear()
-//    player.releaseDrm()
     super.onDestroy()
   }
 }

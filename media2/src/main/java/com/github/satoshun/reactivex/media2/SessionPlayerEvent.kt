@@ -3,9 +3,53 @@ package com.github.satoshun.reactivex.media2
 import androidx.media.AudioAttributesCompat
 import androidx.media2.MediaItem
 import androidx.media2.MediaMetadata
+import androidx.media2.MediaPlayer
+import androidx.media2.MediaTimestamp
 import androidx.media2.SessionPlayer
+import androidx.media2.TimedMetaData
+import androidx.media2.VideoSize
 
-sealed class SessionPlayerEvent {
+sealed class MediaPlayerEvent {
+  data class TimedMetaDataAvailable(
+    val mp: MediaPlayer,
+    val item: MediaItem,
+    val data: TimedMetaData
+  ) : MediaPlayerEvent()
+
+  data class MediaTimeDiscontinuity(
+    val mp: MediaPlayer,
+    val item: MediaItem,
+    val timestamp: MediaTimestamp
+  ) : MediaPlayerEvent()
+
+  data class SubtitleData(
+    val mp: MediaPlayer,
+    val item: MediaItem,
+    val data: androidx.media2.SubtitleData
+  ) : MediaPlayerEvent()
+
+  data class Info(
+    val mp: MediaPlayer,
+    val item: MediaItem,
+    val what: Int,
+    val extra: Int
+  ) : MediaPlayerEvent()
+
+  data class VideoSizeChanged(
+    val mp: MediaPlayer,
+    val item: MediaItem,
+    val size: VideoSize
+  ) : MediaPlayerEvent()
+
+  data class Error(
+    val mp: MediaPlayer,
+    val item: MediaItem,
+    val what: Int,
+    val extra: Int
+  ) : MediaPlayerEvent()
+}
+
+sealed class SessionPlayerEvent : MediaPlayerEvent() {
   data class RepeatModeChanged(
     val player: SessionPlayer,
     val repeatMode: Int
