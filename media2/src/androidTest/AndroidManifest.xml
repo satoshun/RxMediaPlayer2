@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.satoshun.reactivex.media2.test">
+    package="com.github.satoshun.media2.reactivex.test">
 
   <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
   <uses-permission android:name="android.permission.WAKE_LOCK"/>

@@ -7,7 +7,7 @@ import android.view.SurfaceHolder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media2.MediaPlayer
 import androidx.media2.UriMediaItem
-import com.github.satoshun.reactivex.media2.events
+import com.github.satoshun.media2.reactivex.events
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 

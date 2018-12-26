@@ -12,6 +12,8 @@ android {
 }
 
 dependencies {
+  api project(':common')
+
   api Libs.media2
   implementation Libs.media2_exoplayer
 
@@ -19,12 +21,6 @@ dependencies {
   api Libs.rxandroid
 
   implementation Libs.kotlin
-
-//  testImplementation Libs.junit
-//  testImplementation Libs.test_runner
-//  testImplementation Libs.test_rules
-//  testImplementation Libs.robolectric
-//  testImplementation Libs.truth
 
   androidTestImplementation Libs.junit
   androidTestImplementation Libs.test_runner

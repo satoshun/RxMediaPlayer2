@@ -1,8 +1,10 @@
-package com.github.satoshun.reactivex.media2
+package com.github.satoshun.media2.reactivex
 
 import androidx.annotation.CheckResult
 import androidx.media2.MediaPlayer
 import androidx.media2.SessionPlayer
+import com.github.satoshun.reactivex.media2.MediaPlayerEvent
+import com.github.satoshun.reactivex.media2.SessionPlayerEvent
 import io.reactivex.Observable
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors

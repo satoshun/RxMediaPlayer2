@@ -1,4 +1,4 @@
-package com.github.satoshun.reactivex.media2
+package com.github.satoshun.media2.reactivex
 
 import android.os.Looper
 import io.reactivex.android.schedulers.AndroidSchedulers
