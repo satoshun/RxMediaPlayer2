@@ -2,14 +2,14 @@ package com.github.satoshun.rxmediaplayer2
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.SurfaceHolder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media2.MediaPlayer
-import androidx.media2.SessionPlayer
 import androidx.media2.UriMediaItem
+import com.github.satoshun.reactivex.media2.events
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.concurrent.Executors
 
 private const val SAMPLE = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4"
 //private const val SAMPLE = "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8"
@@ -25,36 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     player = MediaPlayer(this)
 
-//    player.set
-
-    fun eventtest() {
-      player.registerPlayerCallback(
-        Executors.newFixedThreadPool(1),
-        object : SessionPlayer.PlayerCallback() {
-        }
+    fun eventsObserve() {
+      disposables.add(
+        player
+          .events()
+          .subscribe {
+            Log.d("event", it.toString())
+          }
       )
-//      disposables.add(
-//        player.events()
-//          .subscribe {
-//            Log.d("event", it.toString())
-//            when (it) {
-//              is MediaPlayer2Event.Info -> {
-//                if (it.what == MediaPlayer2.MEDIA_INFO_PREPARED) {
-//                  player.play()
-//                }
-//              }
-//            }
-//          }
-//      )
-    }
-
-    fun connectortest() {
-//      disposables.add(
-//          player.mediaPlayerConnector.events()
-//              .subscribe {
-//                Log.d("connector event", it.toString())
-//              }
-//      )
     }
 
     fun drmtest() {
@@ -69,8 +47,7 @@ class MainActivity : AppCompatActivity() {
 //      player.prepareDrm(UUID.randomUUID())
     }
 
-    eventtest()
-//    connectortest()
+    eventsObserve()
 //    drmtest()
 
     player.setMediaItem(
@@ -89,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 //            .build()
 //    )
     player.prepare()
+    player.play()
 
     // todo
     surface.holder.addCallback(object : SurfaceHolder.Callback {

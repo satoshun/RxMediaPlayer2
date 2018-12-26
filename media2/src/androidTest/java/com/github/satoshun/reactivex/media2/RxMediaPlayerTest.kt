@@ -23,6 +23,6 @@ package com.github.satoshun.reactivex.media2
 //
 //    test
 //        .firstWithAwait()
-//        .isInstanceOf<MediaPlayer2Event.CallCompleted>()
+//        .isInstanceOf<SessionPlayerEvent.CallCompleted>()
 //  }
 //}
