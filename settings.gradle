@@ -1,1 +1,3 @@
-include ':app', ':media2'
+include ':app'
+include ':media2'
+include ':common'
