@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceHolder
 import androidx.appcompat.app.AppCompatActivity
+import androidx.media2.MediaPlayer
 import androidx.media2.MediaPlayer2
-import androidx.media2.UriDataSourceDesc2
+import androidx.media2.exoplayer.external.upstream.DataSource
 import com.github.satoshun.reactivex.media2.MediaPlayer2Event
-import com.github.satoshun.reactivex.media2.drmEvents
-import com.github.satoshun.reactivex.media2.events
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.UUID
@@ -20,60 +19,60 @@ private const val SAMPLE = "https://www.sample-videos.com/video/mp4/720/big_buck
 class MainActivity : AppCompatActivity() {
   private val disposables = CompositeDisposable()
 
-  private lateinit var player: MediaPlayer2
+  private lateinit var player: MediaPlayer
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    player = MediaPlayer2.create(this)
+    player = MediaPlayer(this)
 
     fun eventtest() {
-      disposables.add(
-          player.events()
-              .subscribe {
-                Log.d("event", it.toString())
-                when (it) {
-                  is MediaPlayer2Event.Info -> {
-                    if (it.what == MediaPlayer2.MEDIA_INFO_PREPARED) {
-                      player.play()
-                    }
-                  }
-                }
-              }
-      )
+//      disposables.add(
+//        player.events()
+//          .subscribe {
+//            Log.d("event", it.toString())
+//            when (it) {
+//              is MediaPlayer2Event.Info -> {
+//                if (it.what == MediaPlayer2.MEDIA_INFO_PREPARED) {
+//                  player.play()
+//                }
+//              }
+//            }
+//          }
+//      )
     }
 
     fun connectortest() {
-      disposables.add(
-          player.mediaPlayerConnector.events()
-              .subscribe {
-                Log.d("connector event", it.toString())
-              }
-      )
+//      disposables.add(
+//          player.mediaPlayerConnector.events()
+//              .subscribe {
+//                Log.d("connector event", it.toString())
+//              }
+//      )
     }
 
     fun drmtest() {
-      disposables.add(
-          player.drmEvents()
-              .subscribe {
-                Log.d("drm events", it.toString())
-              }
-      )
+//      disposables.add(
+//          player.drmEvents()
+//              .subscribe {
+//                Log.d("drm events", it.toString())
+//              }
+//      )
 
       // todo
-      player.prepareDrm(UUID.randomUUID())
+//      player.prepareDrm(UUID.randomUUID())
     }
 
     eventtest()
     connectortest()
     drmtest()
 
-    player.setDataSource(
-        UriDataSourceDesc2
-            .Builder(this, Uri.parse(SAMPLE))
-            .build()
-    )
+//    player.setDataSource(
+//      DataSource
+//        .Builder(this, Uri.parse(SAMPLE))
+//        .build()
+//    )
 //    val fd = assets.openFd("big_buck_bunny.mp4")
 //    player.setDataSource(
 //        FileDataSourceDesc2
@@ -102,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
   override fun onDestroy() {
     disposables.clear()
-    player.releaseDrm()
+//    player.releaseDrm()
     super.onDestroy()
   }
 }
