@@ -14,11 +14,17 @@ object Libs {
   const val dokka_plugin = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
 
   const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Vers.kotlin}"
+
   const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Vers.couroutine}"
+  const val coroutines_ui = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Vers.couroutine}"
+  const val coroutines_autodispose = "com.github.satoshun.coroutine.autodispose:autodispose:0.1.1"
 
   const val appcompat = "androidx.appcompat:appcompat:1.0.0"
   const val constraint_layout = "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
   const val material = "com.google.android.material:material:1.0.0"
+
+  const val activityx = "androidx.activity:activity-ktx:1.0.0-alpha03"
+  const val fragmentx = "androidx.fragment:fragment-ktx:1.1.0-alpha03"
 
   const val media2 = "androidx.media2:media2:1.0.0-alpha04"
   const val media2_exoplayer = "androidx.media2:media2-exoplayer:1.0.0-alpha01"

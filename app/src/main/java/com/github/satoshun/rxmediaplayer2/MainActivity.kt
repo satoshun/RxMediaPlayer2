@@ -4,17 +4,18 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.SurfaceHolder
-import androidx.appcompat.app.AppCompatActivity
 import androidx.media2.MediaPlayer
 import androidx.media2.UriMediaItem
 import com.github.satoshun.media2.reactivex.events
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.launch
+import com.github.satoshun.media2.coroutines.events as channelEvents
 
 private const val SAMPLE = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4"
 //private const val SAMPLE = "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8"
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
   private val disposables = CompositeDisposable()
 
   private lateinit var player: MediaPlayer
@@ -22,7 +23,6 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-
     player = MediaPlayer(this)
 
     fun eventsObserve() {
@@ -30,9 +30,15 @@ class MainActivity : AppCompatActivity() {
         player
           .events()
           .subscribe {
-            Log.d("event", it.toString())
+            Log.d("rxjava2", it.toString())
           }
       )
+
+      launch {
+        for (event in player.channelEvents()) {
+          Log.d("coroutines", event.toString())
+        }
+      }
     }
 
     eventsObserve()

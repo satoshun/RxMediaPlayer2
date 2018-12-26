@@ -20,31 +20,23 @@ internal class SessionPlayerObservable(
 
   private class Listener(
     private val player: SessionPlayer,
-    observer: Observer<in SessionPlayerEvent>,
+    private val observer: Observer<in SessionPlayerEvent>,
     private val executor: Executor
-  ) : MainDisposable {
-    init {
-    }
-
-    private val actual = PlayerObserver(observer)
-
+  ) : SessionPlayerListener(),
+    MainDisposable {
     override val unsubscribed = AtomicBoolean()
 
     fun subscribe() {
-      player.registerPlayerCallback(executor, actual)
+      player.registerPlayerCallback(executor, this)
     }
 
     override fun onDispose() {
-      player.unregisterPlayerCallback(actual)
+      player.unregisterPlayerCallback(this)
     }
 
-    private inner class PlayerObserver(
-      private val observer: Observer<in SessionPlayerEvent>
-    ) : SessionPlayerListener() {
-      override fun invoke(event: SessionPlayerEvent) {
-        if (isDisposed) return
-        observer.onNext(event)
-      }
+    override fun invoke(event: SessionPlayerEvent) {
+      if (isDisposed) return
+      observer.onNext(event)
     }
   }
 }

@@ -22,8 +22,15 @@ android {
 
 dependencies {
   implementation project(':rxjava2')
+  implementation project(':coroutines')
 
   implementation Libs.kotlin
   implementation Libs.appcompat
   implementation Libs.constraint_layout
+
+  implementation Libs.coroutines_ui
+  implementation Libs.coroutines_autodispose
+
+  implementation Libs.activityx
+  implementation Libs.fragmentx
 }
