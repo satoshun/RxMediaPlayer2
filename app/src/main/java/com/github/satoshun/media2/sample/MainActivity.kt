@@ -1,4 +1,4 @@
-package com.github.satoshun.rxmediaplayer2
+package com.github.satoshun.media2.sample
 
 import android.net.Uri
 import android.os.Bundle
@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import com.github.satoshun.media2.coroutines.events as channelEvents
 
 private const val SAMPLE = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4"
-//private const val SAMPLE = "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8"
 
 class MainActivity : BaseActivity() {
   private val disposables = CompositeDisposable()

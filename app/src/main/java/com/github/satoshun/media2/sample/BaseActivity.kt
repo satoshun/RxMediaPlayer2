@@ -1,4 +1,4 @@
-package com.github.satoshun.rxmediaplayer2
+package com.github.satoshun.media2.sample
 
 import androidx.appcompat.app.AppCompatActivity
 import com.github.satoshun.coroutine.autodispose.lifecycle.autoDisposeInterceptor
