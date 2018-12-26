@@ -2,22 +2,10 @@ package com.github.satoshun.media2.reactivex
 
 import androidx.annotation.CheckResult
 import androidx.media2.MediaPlayer
-import androidx.media2.SessionPlayer
-import com.github.satoshun.reactivex.media2.MediaPlayerEvent
-import com.github.satoshun.reactivex.media2.SessionPlayerEvent
+import com.github.satoshun.media2.MediaPlayerEvent
 import io.reactivex.Observable
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-
-/**
- * event stream of [SessionPlayer.PlayerCallback]
- */
-@CheckResult
-fun SessionPlayer.events(
-  executor: Executor = Executors.newSingleThreadExecutor()
-): Observable<SessionPlayerEvent> {
-  return SessionPlayerObservable(this, executor)
-}
 
 /**
  * event stream of [MediaPlayer.PlayerCallback]

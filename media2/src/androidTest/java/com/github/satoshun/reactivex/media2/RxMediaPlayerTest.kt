@@ -3,6 +3,7 @@ package com.github.satoshun.reactivex.media2
 import androidx.media2.MediaPlayer
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.github.satoshun.media2.SessionPlayerEvent
 import com.github.satoshun.media2.reactivex.events
 import org.hamcrest.core.IsInstanceOf
 import org.junit.After

@@ -1,4 +1,4 @@
-package com.github.satoshun.reactivex.media2
+package com.github.satoshun.media2
 
 import androidx.media.AudioAttributesCompat
 import androidx.media2.MediaItem

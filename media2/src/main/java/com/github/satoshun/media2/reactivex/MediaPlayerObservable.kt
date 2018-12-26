@@ -9,8 +9,8 @@ import androidx.media2.SessionPlayer
 import androidx.media2.SubtitleData
 import androidx.media2.TimedMetaData
 import androidx.media2.VideoSize
-import com.github.satoshun.reactivex.media2.MediaPlayerEvent
-import com.github.satoshun.reactivex.media2.SessionPlayerEvent
+import com.github.satoshun.media2.MediaPlayerEvent
+import com.github.satoshun.media2.SessionPlayerEvent
 import io.reactivex.Observable
 import io.reactivex.Observer
 import java.util.concurrent.Executor

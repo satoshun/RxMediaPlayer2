@@ -4,7 +4,7 @@ import androidx.media.AudioAttributesCompat
 import androidx.media2.MediaItem
 import androidx.media2.MediaMetadata
 import androidx.media2.SessionPlayer
-import com.github.satoshun.reactivex.media2.SessionPlayerEvent
+import com.github.satoshun.media2.SessionPlayerEvent
 import io.reactivex.Observable
 import io.reactivex.Observer
 import java.util.concurrent.Executor
