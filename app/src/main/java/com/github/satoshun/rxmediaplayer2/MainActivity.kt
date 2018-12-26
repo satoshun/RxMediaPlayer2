@@ -2,18 +2,16 @@ package com.github.satoshun.rxmediaplayer2
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.SurfaceHolder
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media2.MediaPlayer
-import androidx.media2.MediaPlayer2
-import androidx.media2.exoplayer.external.upstream.DataSource
-import com.github.satoshun.reactivex.media2.MediaPlayer2Event
+import androidx.media2.SessionPlayer
+import androidx.media2.UriMediaItem
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.UUID
+import java.util.concurrent.Executors
 
-private const val SAMPLE = "https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4"
+private const val SAMPLE = "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4"
 //private const val SAMPLE = "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8"
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     player = MediaPlayer(this)
 
+//    player.set
+
     fun eventtest() {
+      player.registerPlayerCallback(
+        Executors.newFixedThreadPool(1),
+        object : SessionPlayer.PlayerCallback() {
+        }
+      )
 //      disposables.add(
 //        player.events()
 //          .subscribe {
@@ -65,14 +70,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     eventtest()
-    connectortest()
-    drmtest()
+//    connectortest()
+//    drmtest()
 
-//    player.setDataSource(
-//      DataSource
-//        .Builder(this, Uri.parse(SAMPLE))
-//        .build()
-//    )
+    player.setMediaItem(
+      UriMediaItem
+        .Builder(this, Uri.parse(SAMPLE))
+        .build()
+    )
 //    val fd = assets.openFd("big_buck_bunny.mp4")
 //    player.setDataSource(
 //        FileDataSourceDesc2

@@ -22,14 +22,14 @@ dependencies {
 
   implementation Libs.kotlin
 
-  testImplementation Libs.junit
-  testImplementation Libs.test_runner
-  testImplementation Libs.test_rules
-  testImplementation Libs.robolectric
+//  testImplementation Libs.junit
+//  testImplementation Libs.test_runner
+//  testImplementation Libs.test_rules
+//  testImplementation Libs.robolectric
   testImplementation Libs.truth
-
-  androidTestImplementation Libs.junit
-  androidTestImplementation Libs.test_runner
-  androidTestImplementation Libs.test_rules
+//
+//  androidTestImplementation Libs.junit
+//  androidTestImplementation Libs.test_runner
+//  androidTestImplementation Libs.test_rules
   androidTestImplementation Libs.truth
 }
