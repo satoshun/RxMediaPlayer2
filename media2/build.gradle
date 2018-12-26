@@ -13,6 +13,8 @@ android {
 
 dependencies {
   api Libs.media2
+  implementation Libs.media2_exoplayer
+
   api Libs.rxjava
   api Libs.rxandroid
 

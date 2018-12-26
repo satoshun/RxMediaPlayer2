@@ -26,21 +26,3 @@ fun MediaPlayer.events(
 ): Observable<MediaPlayerEvent> {
   return MediaPlayerObservable(this, executor)
 }
-
-///**
-// * event stream of [MediaPlayer2.DrmEventCallback]
-// */
-//@CheckResult
-//fun MediaPlayer2.drmEvents(
-//  executor: Executor = Executors.newSingleThreadExecutor()
-//): Observable<MediaPlayer2DrmEvent> {
-//  return DrmEventObservable(this, executor)
-//}
-//
-///**
-// * event stream of [MediaPlayer2.OnDrmConfigHelper]
-// */
-//@CheckResult
-//fun MediaPlayer2.drmConfig(): Observable<MediaPlayer2DrmConfig> {
-//  return DrmConfigObservable(this)
-//}

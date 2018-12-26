@@ -28,7 +28,7 @@ object Libs {
   const val test_runner = "androidx.test:runner:1.1.1"
   const val test_rules = "androidx.test:rules:1.1.1"
   const val test_junit_runner = "androidx.test.ext:junit:1.1.0"
-  const val espresso = "com.android.support.test.espresso:espresso-core:3.0.1"
+  const val espresso = "com.android.support.test.espresso:espresso-core:3.1.1"
 
   const val robolectric = "org.robolectric:robolectric:4.1"
   const val truth = "com.google.truth:truth:0.42"
