@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdkVersion Vers.compile_sdk
+
+  defaultConfig {
+    minSdkVersion Vers.min_sdk
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+}
+
+dependencies {
+  api project(':common')
+
+  api Libs.media2
+  implementation Libs.media2_exoplayer
+
+  api Libs.kotlin
+  api Libs.coroutines
+
+  androidTestImplementation Libs.junit
+  androidTestImplementation Libs.test_runner
+  androidTestImplementation Libs.test_rules
+  androidTestImplementation Libs.test_junit_runner
+}

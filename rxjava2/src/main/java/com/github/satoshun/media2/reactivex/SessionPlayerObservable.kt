@@ -1,10 +1,8 @@
 package com.github.satoshun.media2.reactivex
 
-import androidx.media.AudioAttributesCompat
-import androidx.media2.MediaItem
-import androidx.media2.MediaMetadata
 import androidx.media2.SessionPlayer
 import com.github.satoshun.media2.SessionPlayerEvent
+import com.github.satoshun.media2.SessionPlayerListener
 import io.reactivex.Observable
 import io.reactivex.Observer
 import java.util.concurrent.Executor
@@ -20,93 +18,33 @@ internal class SessionPlayerObservable(
     listener.subscribe()
   }
 
-  internal class Listener(
+  private class Listener(
     private val player: SessionPlayer,
-    private val observer: Observer<in SessionPlayerEvent>,
+    observer: Observer<in SessionPlayerEvent>,
     private val executor: Executor
-  ) : SessionPlayer.PlayerCallback(),
-    MainDisposable {
+  ) : MainDisposable {
+    init {
+    }
+
+    private val actual = PlayerObserver(observer)
 
     override val unsubscribed = AtomicBoolean()
 
     fun subscribe() {
-      player.registerPlayerCallback(executor, this)
+      player.registerPlayerCallback(executor, actual)
     }
 
     override fun onDispose() {
-      player.unregisterPlayerCallback(this)
+      player.unregisterPlayerCallback(actual)
     }
 
-    override fun onRepeatModeChanged(player: SessionPlayer, repeatMode: Int) {
-      super.onRepeatModeChanged(player, repeatMode)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.RepeatModeChanged(player, repeatMode))
-    }
-
-    override fun onPlaylistChanged(player: SessionPlayer, list: MutableList<MediaItem>?, metadata: MediaMetadata?) {
-      super.onPlaylistChanged(player, list, metadata)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.PlaylistChanged(player, list, metadata))
-    }
-
-    override fun onPlaybackCompleted(player: SessionPlayer) {
-      super.onPlaybackCompleted(player)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.PlaybackCompleted(player))
-    }
-
-    override fun onSeekCompleted(player: SessionPlayer, position: Long) {
-      super.onSeekCompleted(player, position)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.SeekCompleted(player, position))
-    }
-
-    override fun onPlayerStateChanged(player: SessionPlayer, playerState: Int) {
-      super.onPlayerStateChanged(player, playerState)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.PlayerStateChanged(player, playerState))
-    }
-
-    override fun onAudioAttributesChanged(player: SessionPlayer, attributes: AudioAttributesCompat?) {
-      super.onAudioAttributesChanged(player, attributes)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.AudioAttributesChanged(player, attributes))
-    }
-
-    override fun onPlaylistMetadataChanged(player: SessionPlayer, metadata: MediaMetadata?) {
-      super.onPlaylistMetadataChanged(player, metadata)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.PlaylistMetadataChanged(player, metadata))
-    }
-
-    override fun onCurrentMediaItemChanged(player: SessionPlayer, item: MediaItem) {
-      super.onCurrentMediaItemChanged(player, item)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.CurrentMediaItemChanged(player, item))
-    }
-
-    override fun onBufferingStateChanged(player: SessionPlayer, item: MediaItem?, buffState: Int) {
-      super.onBufferingStateChanged(player, item, buffState)
-      if (isDisposed) return
-      observer.onNext(
-        SessionPlayerEvent.BufferingStateChanged(
-          player,
-          item,
-          buffState
-        )
-      )
-    }
-
-    override fun onShuffleModeChanged(player: SessionPlayer, shuffleMode: Int) {
-      super.onShuffleModeChanged(player, shuffleMode)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.ShuffleModeChanged(player, shuffleMode))
-    }
-
-    override fun onPlaybackSpeedChanged(player: SessionPlayer, playbackSpeed: Float) {
-      super.onPlaybackSpeedChanged(player, playbackSpeed)
-      if (isDisposed) return
-      observer.onNext(SessionPlayerEvent.PlaybackSpeedChanged(player, playbackSpeed))
+    private inner class PlayerObserver(
+      private val observer: Observer<in SessionPlayerEvent>
+    ) : SessionPlayerListener() {
+      override fun invoke(event: SessionPlayerEvent) {
+        if (isDisposed) return
+        observer.onNext(event)
+      }
     }
   }
 }

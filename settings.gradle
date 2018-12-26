@@ -1,3 +1,4 @@
 include ':app'
 include ':rxjava2'
+include ':coroutines'
 include ':common'
