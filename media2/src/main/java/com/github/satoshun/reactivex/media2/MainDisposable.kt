@@ -5,7 +5,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.atomic.AtomicBoolean
 
-
 // borrow code from io.reactivex.android.MainThreadDisposable
 internal interface MainDisposable : Disposable {
   val unsubscribed: AtomicBoolean
