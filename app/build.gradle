@@ -21,7 +21,7 @@ android {
 }
 
 dependencies {
-  implementation project(':media2')
+  implementation project(':rxjava2')
 
   implementation Libs.kotlin
   implementation Libs.appcompat

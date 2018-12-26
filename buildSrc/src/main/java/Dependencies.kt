@@ -4,6 +4,7 @@ object Vers {
   const val target_sdk = 28
 
   const val kotlin = "1.3.11"
+  const val couroutine = "1.0.1"
 }
 
 object Libs {
@@ -13,6 +14,7 @@ object Libs {
   const val dokka_plugin = "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
 
   const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Vers.kotlin}"
+  const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Vers.couroutine}"
 
   const val appcompat = "androidx.appcompat:appcompat:1.0.0"
   const val constraint_layout = "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
